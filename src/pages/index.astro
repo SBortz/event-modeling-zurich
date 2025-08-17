@@ -12,6 +12,29 @@ import "../styles/global.css";
     body {
       font-family: 'Inter', sans-serif;
     }
+    
+    /* Aktive Navigation für Hash-Links */
+    nav a[href^="#"].active {
+      color: white !important;
+      background-color: rgb(37 99 235) !important; /* blue-600 */
+    }
+    
+    /* Standard-Zustand für Hash-Links */
+    nav a[href^="#"] {
+      color: rgb(75 85 99); /* gray-600 */
+    }
+    
+    /* Home-Navigation-Link (nicht der Logo-Link) */
+    nav .desktop-nav a[href="/"].active {
+      color: white !important;
+      background-color: rgb(37 99 235) !important; /* blue-600 */
+    }
+    
+    /* Logo-Link immer im Standard-Zustand */
+    nav .logo-link {
+      color: rgb(15 31 47) !important; /* #0f1f2f */
+      background-color: transparent !important;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-b from-[#eaf4fb] to-white text-[#1f1f1f] leading-relaxed">
@@ -20,14 +43,14 @@ import "../styles/global.css";
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <!-- Logo/Brand -->
-        <a href="/" class="flex items-center space-x-2">
+        <a href="/" class="logo-link flex items-center space-x-2">
           <span class="text-2xl">🗓️</span>
           <span class="font-bold text-xl text-[#0f1f2f]">Event Modeling Zurich</span>
         </a>
         
         <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="/" class="text-white font-medium bg-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Home</a>
+        <div class="desktop-nav hidden md:flex items-center space-x-8">
+          <a href="/" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Home</a>
           <a href="/meetup" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Meetup</a>
           <a href="/blog" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Blog</a>
           <a href="#about" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">About</a>
@@ -311,7 +334,10 @@ import "../styles/global.css";
     </section>
   </div>
 
-  <!-- JavaScript for mobile menu only -->
+  <!-- Additional spacing for better scroll detection -->
+  <div class="h-96 bg-transparent"></div>
+
+  <!-- JavaScript for mobile menu and hash-based navigation -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mobileMenuButton = document.querySelector('button[class*="md:hidden"]');
@@ -330,6 +356,76 @@ import "../styles/global.css";
           });
         });
       }
+
+      // Aktive Navigation basierend auf Scroll-Position
+      function updateActiveNavigation() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        const homeNavLink = document.querySelector('nav .desktop-nav a[href="/"]');
+        const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        
+        console.log(`ScrollY: ${scrollY}, Window Height: ${windowHeight}`);
+        console.log(`Found ${sections.length} sections with IDs`);
+        
+        let currentSection = '';
+        
+        sections.forEach(section => {
+          const sectionTop = (section as HTMLElement).offsetTop;
+          const sectionHeight = (section as HTMLElement).clientHeight;
+          const sectionId = section.getAttribute('id');
+          
+          // Mehrere Kriterien für "sichtbar"
+          const isInViewport = scrollY + 200 >= sectionTop && scrollY + 200 < sectionTop + sectionHeight;
+          const isNearTop = scrollY >= sectionTop - 200 && scrollY < sectionTop + 200;
+          
+          console.log(`Section ${sectionId}: top=${sectionTop}, height=${sectionHeight}, scrollY=${scrollY}, inViewport=${isInViewport}, nearTop=${isNearTop}`);
+          
+          if (isInViewport || isNearTop) {
+            if (sectionId) {
+              currentSection = sectionId;
+              console.log(`Current section set to: ${currentSection}`);
+            }
+          }
+        });
+        
+        // Alle Hash-Links zurücksetzen
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Home-Navigation-Link zurücksetzen (immer inaktiv wenn Hash-Links aktiv sind)
+        if (homeNavLink) {
+          homeNavLink.classList.remove('active');
+          // Ursprüngliche CSS-Klassen wiederherstellen
+          homeNavLink.classList.remove('text-white', 'bg-blue-600');
+          homeNavLink.classList.add('text-gray-600');
+        }
+        
+        // Aktiven Hash-Link markieren
+        if (currentSection) {
+          const activeLink = document.querySelector(`nav a[href="#${currentSection}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active');
+            console.log(`Activated link: #${currentSection}`);
+          }
+        } else {
+          // Wenn keine Hash-Sektion aktiv ist, Home-Navigation-Link aktiv machen
+          if (homeNavLink) {
+            homeNavLink.classList.add('active');
+            // Aktive CSS-Klassen für Home setzen
+            homeNavLink.classList.remove('text-gray-600');
+            homeNavLink.classList.add('text-white', 'bg-blue-600');
+            console.log('Activated Home navigation link');
+          }
+        }
+      }
+
+      // Navigation beim Scrollen aktualisieren
+      window.addEventListener('scroll', updateActiveNavigation);
+      
+      // Initial Navigation setzen
+      updateActiveNavigation();
     });
   </script>
 </body>
