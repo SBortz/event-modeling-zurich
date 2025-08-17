@@ -80,7 +80,7 @@ import "../styles/global.css";
     </header>
 
     <!-- What is Event Modeling Section -->
-    <section id="about" class="px-4 py-20 bg-white">
+    <section class="px-4 py-20 bg-white">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl font-bold mb-8 text-[#0f1f2f]">What is Event Modeling?</h2>
         <p class="text-xl mb-8 leading-relaxed">
@@ -163,6 +163,54 @@ import "../styles/global.css";
       </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="px-4 py-20 bg-gray-50">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center text-[#0f1f2f]">About Event Modeling Zurich</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-2xl font-semibold mb-6 text-[#0f1f2f]">Our Mission</h3>
+            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
+              We're passionate about bringing clarity to complex software systems through Event Modeling. 
+              Our community in Zurich brings together professionals who believe that understanding is the foundation of great software.
+            </p>
+            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
+              Whether you're a seasoned architect or just starting your journey with Event Modeling, 
+              you'll find a welcoming environment to learn, share, and grow.
+            </p>
+            <div class="flex items-center space-x-4">
+              <div class="text-2xl">🇨🇭</div>
+              <div>
+                <p class="font-semibold text-[#0f1f2f]">Based in Zurich</p>
+                <p class="text-gray-600">Switzerland's tech hub</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold mb-4 text-[#0f1f2f]">What We Do</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                Monthly meetups and workshops
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                Hands-on Event Modeling sessions
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                Networking with industry experts
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-500 mr-3">✓</span>
+                Knowledge sharing and collaboration
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Zurich Meetup Section -->
     <section class="px-4 py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
       <div class="max-w-4xl mx-auto text-center">
@@ -205,18 +253,65 @@ import "../styles/global.css";
       </div>
     </section>
 
-    <!-- Call to Action Section -->
+    <!-- Contact Section -->
     <section id="contact" class="px-4 py-20 bg-gray-100 text-center rounded-b-xl mb-20">
-      <h2 class="text-2xl font-semibold mb-4">Stay in the loop</h2>
-      <p class="mb-8 text-lg">Follow us on LinkedIn or sign up for updates.</p>
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-        <a href="https://www.linkedin.com/in/sebastian-bortz-95273888" class="bg-[#0A66C2] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#004182] transition-colors duration-200">Follow on LinkedIn</a>
-        <a href="https://www.meetup.com/event-modelling-zurich/" class="border-2 border-[#1f1f1f] text-[#1f1f1f] px-6 py-3 rounded-md font-semibold bg-white hover:bg-gray-100 transition-colors duration-200">Join the meetup group</a>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-[#0f1f2f]">Get in Touch</h2>
+        <p class="text-xl mb-8 text-gray-700">Connect with our community and stay updated on the latest Event Modeling insights</p>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="text-3xl mb-4">📧</div>
+            <h3 class="text-lg font-semibold mb-2 text-[#0f1f2f]">Newsletter</h3>
+            <p class="text-gray-600 mb-4">Get monthly updates and insights</p>
+            <div class="flex gap-2">
+              <input 
+                type="email" 
+                placeholder="Your email" 
+                class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200">
+                Subscribe
+              </button>
+            </div>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="text-3xl mb-4">🔗</div>
+            <h3 class="text-lg font-semibold mb-2 text-[#0f1f2f]">LinkedIn</h3>
+            <p class="text-gray-600 mb-4">Follow our professional updates</p>
+            <a href="https://www.linkedin.com/in/sebastian-bortz-95273888" class="inline-block bg-[#0A66C2] text-white px-4 py-2 rounded-md font-medium hover:bg-[#004182] transition-colors duration-200">
+              Follow Us
+            </a>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="text-3xl mb-4">🤝</div>
+            <h3 class="text-lg font-semibold mb-2 text-[#0f1f2f]">Meetup</h3>
+            <p class="text-gray-600 mb-4">Join our local community</p>
+            <a href="https://www.meetup.com/event-modelling-zurich/" class="inline-block border-2 border-[#1f1f1f] text-[#1f1f1f] px-4 py-2 rounded-md font-medium bg-white hover:bg-gray-100 transition-colors duration-200">
+              Join Group
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <h3 class="text-2xl font-semibold mb-4 text-[#0f1f2f]">Have Questions?</h3>
+          <p class="text-lg mb-6 text-gray-700">We'd love to hear from you! Whether you have questions about Event Modeling or want to get involved in our community.</p>
+          <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="mailto:info@eventmodeling-zurich.ch" class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+              Send us an Email
+            </a>
+            <a href="/meetup" class="border-2 border-[#1f1f1f] text-[#1f1f1f] px-6 py-3 rounded-lg font-semibold bg-white hover:bg-gray-100 transition-colors duration-200">
+              Learn More
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 
-  <!-- JavaScript for mobile menu -->
+  <!-- JavaScript for mobile menu only -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mobileMenuButton = document.querySelector('button[class*="md:hidden"]');
