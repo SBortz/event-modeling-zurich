@@ -1,0 +1,210 @@
+---
+export interface Props {
+  currentPage: 'home' | 'meetup' | 'blog';
+}
+
+const { currentPage } = Astro.props;
+---
+
+<style>
+  /* Aktive Navigation für Hash-Links */
+  nav a[href*="#"].active {
+    color: white !important;
+    background-color: rgb(37 99 235) !important; /* blue-600 */
+  }
+  
+  /* Standard-Zustand für Hash-Links */
+  nav a[href*="#"] {
+    color: rgb(75 85 99); /* gray-600 */
+  }
+  
+  /* Home-Navigation-Link (nicht der Logo-Link) */
+  nav .desktop-nav a[href="/"].active {
+    color: white !important;
+    background-color: rgb(37 99 235) !important; /* blue-600 */
+  }
+  
+  /* Logo-Link immer im Standard-Zustand */
+  nav .logo-link {
+    color: rgb(15 31 47) !important; /* #0f1f2f */
+    background-color: transparent !important;
+  }
+</style>
+
+<nav class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo/Brand -->
+      <a href="/" class="logo-link flex items-center space-x-2">
+        <span class="text-2xl">🗓️</span>
+        <span class="font-bold text-xl text-[#0f1f2f]">Event Modeling Zurich</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <div class="desktop-nav hidden md:flex items-center space-x-8">
+        <a href="/" class={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+          currentPage === 'home' 
+            ? 'text-white font-medium bg-blue-600' 
+            : 'text-gray-600 hover:text-blue-600'
+        }`}>Home</a>
+        <a href="/#about" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">About</a>
+        <a href="/#contact" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Contact</a>
+        <a href="/blog" class={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+          currentPage === 'blog' 
+            ? 'text-white font-medium bg-blue-600' 
+            : 'text-gray-600 hover:text-blue-600'
+        }`}>Blog</a>
+        <a href="/meetup" class={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+          currentPage === 'meetup' 
+            ? 'text-white font-medium bg-blue-600' 
+            : 'text-gray-600 hover:text-blue-600'
+        }`}>Meetup</a>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="hidden md:block">
+        <a href="/meetup" class="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
+          Join Meetup
+        </a>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <button class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    
+          <!-- Mobile Navigation -->
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
+          <a href="/" class={`block px-3 py-2 rounded-md ${
+            currentPage === 'home' 
+              ? 'text-white font-medium bg-blue-600' 
+              : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+          }`}>Home</a>
+          <a href="/#about" class="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md">About</a>
+          <a href="/#contact" class="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md">Contact</a>
+          <a href="/blog" class={`block px-3 py-2 rounded-md ${
+            currentPage === 'blog' 
+              ? 'text-white font-medium bg-blue-600' 
+              : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+          }`}>Blog</a>
+          <a href="/meetup" class={`block px-3 py-2 rounded-md ${
+            currentPage === 'meetup' 
+              ? 'text-white font-medium bg-blue-600' 
+              : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+          }`}>Meetup</a>
+        <div class="pt-4">
+          <a href="/meetup" class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
+            Join Meetup
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.querySelector('button[class*="md:hidden"]');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Aktive Navigation für Hash-Links nur auf der Hauptseite
+    if (window.location.pathname === '/') {
+      function updateActiveNavigation() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href*="#"]');
+        const homeNavLink = document.querySelector('nav .desktop-nav a[href="/"]');
+        const scrollY = window.pageYOffset;
+        
+        console.log('=== Navigation Debug ===');
+        console.log('Found sections:', sections.length);
+        console.log('Found nav links:', navLinks.length);
+        console.log('Home nav link:', homeNavLink);
+        console.log('Scroll Y:', scrollY);
+        
+        let currentSection = '';
+        
+        sections.forEach(section => {
+          const sectionTop = (section as HTMLElement).offsetTop;
+          const sectionHeight = (section as HTMLElement).clientHeight;
+          const sectionId = section.getAttribute('id');
+          
+          console.log(`Section ${sectionId}: top=${sectionTop}, height=${sectionHeight}`);
+          
+          // Mehrere Kriterien für "sichtbar"
+          const isInViewport = scrollY + 200 >= sectionTop && scrollY + 200 < sectionTop + sectionHeight;
+          const isNearTop = scrollY >= sectionTop - 200 && scrollY < sectionTop + 200;
+          
+          console.log(`  isInViewport: ${isInViewport}, isNearTop: ${isNearTop}`);
+          
+          if (isInViewport || isNearTop) {
+            if (sectionId) {
+              currentSection = sectionId;
+              console.log(`Current section set to: ${currentSection}`);
+            }
+          }
+        });
+        
+        console.log('Final current section:', currentSection);
+        
+        // Alle Hash-Links zurücksetzen
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          console.log('Removed active from:', (link as HTMLAnchorElement).href);
+        });
+        
+        // Home-Navigation-Link zurücksetzen (immer inaktiv wenn Hash-Links aktiv sind)
+        if (homeNavLink) {
+          homeNavLink.classList.remove('active');
+          homeNavLink.classList.remove('text-white', 'bg-blue-600');
+          homeNavLink.classList.add('text-gray-600');
+          console.log('Reset home nav link');
+        }
+        
+        // Aktiven Hash-Link markieren
+        if (currentSection) {
+          const activeLink = document.querySelector(`nav a[href="/#${currentSection}"]`);
+          console.log(`Looking for link with href="/#${currentSection}"`);
+          console.log('Found active link:', activeLink);
+                      if (activeLink) {
+              activeLink.classList.add('active');
+              console.log(`Activated link: ${(activeLink as HTMLAnchorElement).href}`);
+            }
+        } else {
+          // Wenn keine Hash-Sektion aktiv ist, Home-Navigation-Link aktiv machen
+          if (homeNavLink) {
+            homeNavLink.classList.add('active');
+            homeNavLink.classList.remove('text-gray-600');
+            homeNavLink.classList.add('text-white', 'bg-blue-600');
+            console.log('Activated home nav link');
+          }
+        }
+        
+        console.log('=== End Debug ===');
+      }
+
+      // Navigation beim Scrollen aktualisieren
+      window.addEventListener('scroll', updateActiveNavigation);
+      
+      // Initial Navigation setzen
+      updateActiveNavigation();
+    }
+  });
+</script> 

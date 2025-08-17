@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -12,140 +13,65 @@ import "../styles/global.css";
     body {
       font-family: 'Inter', sans-serif;
     }
-    
-    /* Aktive Navigation für Hash-Links */
-    nav a[href^="#"].active {
-      color: white !important;
-      background-color: rgb(37 99 235) !important; /* blue-600 */
-    }
-    
-    /* Standard-Zustand für Hash-Links */
-    nav a[href^="#"] {
-      color: rgb(75 85 99); /* gray-600 */
-    }
-    
-    /* Home-Navigation-Link (nicht der Logo-Link) */
-    nav .desktop-nav a[href="/"].active {
-      color: white !important;
-      background-color: rgb(37 99 235) !important; /* blue-600 */
-    }
-    
-    /* Logo-Link immer im Standard-Zustand */
-    nav .logo-link {
-      color: rgb(15 31 47) !important; /* #0f1f2f */
-      background-color: transparent !important;
-    }
   </style>
 </head>
 <body class="bg-gradient-to-b from-[#eaf4fb] to-white text-[#1f1f1f] leading-relaxed">
-  <!-- Navigation -->
-  <nav class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo/Brand -->
-        <a href="/" class="logo-link flex items-center space-x-2">
-          <span class="text-2xl">🗓️</span>
-          <span class="font-bold text-xl text-[#0f1f2f]">Event Modeling Zurich</span>
-        </a>
-        
-        <!-- Desktop Navigation -->
-        <div class="desktop-nav hidden md:flex items-center space-x-8">
-          <a href="/" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Home</a>
-          <a href="/meetup" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Meetup</a>
-          <a href="/blog" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Blog</a>
-          <a href="#about" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">About</a>
-          <a href="#contact" class="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg transition-colors duration-200">Contact</a>
-        </div>
-        
-        <!-- CTA Button -->
-        <div class="hidden md:block">
-          <a href="/meetup" class="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
-            Join Meetup
-          </a>
-        </div>
-        
-        <!-- Mobile menu button -->
-        <button class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-      
-      <!-- Mobile Navigation -->
-      <div class="md:hidden hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200">
-          <a href="/" class="block px-3 py-2 text-white font-medium bg-blue-600 rounded-md">Home</a>
-          <a href="/meetup" class="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md">Meetup</a>
-          <a href="/blog" class="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md">Blog</a>
-          <a href="#about" class="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md">About</a>
-          <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md">Contact</a>
-          <div class="pt-4">
-            <a href="/meetup" class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
-              Join Meetup
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <Navigation currentPage="home" />
 
   <div class="max-w-6xl mx-auto">
     <!-- Hero Section -->
-    <header class="relative text-left pt-5">
-      <div class="absolute top-10 left-0 z-10 px-6 py-4 flex">
-        <p class="sm:text-4xl lg:text-6xl mr-4">🗓️</p>
-        <h1 class="sm:text-4xl lg:text-6xl font-bold text-[#0f1f2f] leading-tight">
-           Event Modeling <br class="hidden md:block" />Zurich
-        </h1>
+    <section class="px-4 py-20 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-[#0f1f2f]">
+        Event Modeling
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-8">
+        Visualize complex software systems through events, flows, and collaborative thinking
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/meetup" class="bg-yellow-400 hover:bg-yellow-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200">
+          Join Our Meetup
+        </a>
+        <a href="/blog" class="border-2 border-[#1f1f1f] text-[#1f1f1f] px-8 py-4 rounded-lg font-semibold text-lg bg-white hover:bg-gray-100 transition-colors duration-200">
+          Read Our Blog
+        </a>
       </div>
-      <img src="zurich-skyline-placeholder9.png" alt="Zurich Skyline" class="w-full h-auto block rounded-t-3xl" loading="lazy" />
-    </header>
+    </section>
 
     <!-- What is Event Modeling Section -->
     <section class="px-4 py-20 bg-white">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-8 text-[#0f1f2f]">What is Event Modeling?</h2>
-        <p class="text-xl mb-8 leading-relaxed">
-          Event Modeling is a <strong>visual method for describing software systems as stories</strong>. 
+        <h2 class="text-3xl font-bold mb-6 text-[#0f1f2f]">What is Event Modeling?</h2>
+        <p class="text-xl text-gray-700 mb-8">
+          Event Modeling is a visual approach to describing software systems as stories. 
           It helps teams align by mapping out what happens, when, and why – across UI, logic, and data.
         </p>
-        <p class="text-xl mb-12 leading-relaxed">
-          Instead of starting with data structures or APIs, Event Modeling begins with the <strong>events that matter to your business</strong> 
-          and builds understanding from there.
+        <p class="text-lg text-gray-600">
+          Instead of starting with technical architecture, Event Modeling begins with business events 
+          and user interactions, creating a shared understanding that bridges the gap between business 
+          stakeholders and technical teams.
         </p>
-        
-        <div class="flex flex-col items-center p-8 rounded-lg bg-gray-50">
-          <img
-            src="methodik.png"
-            alt="Event Model Timeline Diagram"
-            class="w-full max-w-4xl rounded-lg mb-6 shadow-lg"
-            loading="lazy"
-          />
-          <p class="text-lg text-gray-700">A system story told in events – from trigger to state</p>
-        </div>
       </div>
     </section>
 
     <!-- Key Benefits Section -->
     <section class="px-4 py-20 bg-gray-50">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 text-center text-[#0f1f2f]">Why Event Modeling?</h2>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center text-[#0f1f2f]">Key Benefits</h2>
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <div class="text-3xl mb-4">🎯</div>
-            <h3 class="text-xl font-semibold mb-3">Business Alignment</h3>
-            <p class="text-gray-700">Bridge the gap between business stakeholders and technical teams with clear, visual communication.</p>
+          <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-semibold mb-3 text-[#0f1f2f]">Clear Communication</h3>
+            <p class="text-gray-600">Bridge the gap between business and technical teams with visual models everyone can understand.</p>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <div class="text-3xl mb-4">🧠</div>
-            <h3 class="text-xl font-semibold mb-3">Complexity Management</h3>
-            <p class="text-gray-700">Break down complex systems into understandable, manageable pieces through event-driven thinking.</p>
+          <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+            <div class="text-4xl mb-4">🚀</div>
+            <h3 class="text-xl font-semibold mb-3 text-[#0f1f2f]">Faster Development</h3>
+            <p class="text-gray-600">Reduce misunderstandings and rework by having a clear, shared vision from the start.</p>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <div class="text-3xl mb-4">🚀</div>
-            <h3 class="text-xl font-semibold mb-3">Scalable Architecture</h3>
-            <p class="text-gray-700">Design systems that can evolve and scale while maintaining clarity and consistency.</p>
+          <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+            <div class="text-4xl mb-4">🔄</div>
+            <h3 class="text-xl font-semibold mb-3 text-[#0f1f2f]">Iterative Design</h3>
+            <p class="text-gray-600">Easily evolve your system design as requirements change and new insights emerge.</p>
           </div>
         </div>
       </div>
@@ -153,100 +79,48 @@ import "../styles/global.css";
 
     <!-- Core Concepts Section -->
     <section class="px-4 py-20 bg-white">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 text-center text-[#0f1f2f]">Core Concepts</h2>
-        <div class="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 class="text-2xl font-semibold mb-4 text-[#0f1f2f]">Events</h3>
-            <p class="text-lg mb-4 text-gray-700">
-              Events are the things that happen in your system that matter to your business. 
-              They represent facts that have occurred and cannot be changed.
-            </p>
-            <ul class="list-disc list-inside text-gray-700 space-y-2">
-              <li>User registered</li>
-              <li>Order placed</li>
-              <li>Payment processed</li>
-              <li>Shipment delivered</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-2xl font-semibold mb-4 text-[#0f1f2f]">Commands</h3>
-            <p class="text-lg mb-4 text-gray-700">
-              Commands represent intentions to change the system state. 
-              They are validated and can either succeed or fail.
-            </p>
-            <ul class="list-disc list-inside text-gray-700 space-y-2">
-              <li>Register user</li>
-              <li>Place order</li>
-              <li>Process payment</li>
-              <li>Schedule shipment</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="px-4 py-20 bg-gray-50">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 text-center text-[#0f1f2f]">About Event Modeling Zurich</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-semibold mb-6 text-[#0f1f2f]">Our Mission</h3>
-            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
-              We're passionate about bringing clarity to complex software systems through Event Modeling. 
-              Our community in Zurich brings together professionals who believe that understanding is the foundation of great software.
-            </p>
-            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
-              Whether you're a seasoned architect or just starting your journey with Event Modeling, 
-              you'll find a welcoming environment to learn, share, and grow.
-            </p>
-            <div class="flex items-center space-x-4">
-              <div class="text-2xl">🇨🇭</div>
-              <div>
-                <p class="font-semibold text-[#0f1f2f]">Based in Zurich</p>
-                <p class="text-gray-600">Switzerland's tech hub</p>
-              </div>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center text-[#0f1f2f]">Core Concepts</h2>
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4">
+            <div class="text-2xl">📝</div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-[#0f1f2f]">Events</h3>
+              <p class="text-gray-700">Things that happen in your system, captured as immutable records of fact.</p>
             </div>
           </div>
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <h3 class="text-xl font-semibold mb-4 text-[#0f1f2f]">What We Do</h3>
-            <ul class="space-y-3 text-gray-700">
-              <li class="flex items-center">
-                <span class="text-green-500 mr-3">✓</span>
-                Monthly meetups and workshops
-              </li>
-              <li class="flex items-center">
-                <span class="text-green-500 mr-3">✓</span>
-                Hands-on Event Modeling sessions
-              </li>
-              <li class="flex items-center">
-                <span class="text-green-500 mr-3">✓</span>
-                Networking with industry experts
-              </li>
-              <li class="flex items-center">
-                <span class="text-green-500 mr-3">✓</span>
-                Knowledge sharing and collaboration
-              </li>
-            </ul>
+          <div class="flex items-start space-x-4">
+            <div class="text-2xl">🔄</div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-[#0f1f2f]">Flows</h3>
+              <p class="text-gray-700">Sequences of events that represent user journeys and business processes.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4">
+            <div class="text-2xl">👥</div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-[#0f1f2f]">Collaboration</h3>
+              <p class="text-gray-700">Team-based modeling that ensures everyone shares the same mental model.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Zurich Meetup Section -->
-    <section class="px-4 py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <section class="px-4 py-20 bg-gray-50">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-6 text-[#0f1f2f]">Join Our Zurich Meetup</h2>
-        <p class="text-xl mb-8 leading-relaxed">
-          Connect with fellow system thinkers, architects, developers & modelers in Zurich. 
-          Together, we'll explore how complex software systems can become understandable and manageable.
+        <h2 class="text-3xl font-bold mb-6 text-[#0f1f2f]">Join Our Zurich Community</h2>
+        <p class="text-xl text-gray-700 mb-8">
+          Connect with fellow Event Modeling enthusiasts in Zurich. Share experiences, learn from each other, 
+          and discover how Event Modeling can transform your software development process.
         </p>
-        <div class="bg-white p-8 rounded-lg shadow-sm mb-8">
-          <h3 class="text-2xl font-semibold mb-4">Next Meetup</h3>
-          <p class="text-lg mb-6">Stay tuned – more info coming soon!</p>
-          <a href="/meetup" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-white font-semibold text-lg px-8 py-4 rounded-lg shadow transition-colors duration-200">
-            Learn More About Our Meetups
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/meetup" class="bg-yellow-400 hover:bg-yellow-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200">
+            Learn More About Our Meetup
+          </a>
+          <a href="https://www.meetup.com/event-modelling-zurich/" class="border-2 border-[#1f1f1f] text-[#1f1f1f] px-8 py-4 rounded-lg font-semibold text-lg bg-white hover:bg-gray-100 transition-colors duration-200">
+            Join Meetup Group
           </a>
         </div>
       </div>
@@ -254,25 +128,30 @@ import "../styles/global.css";
 
     <!-- Blog Section -->
     <section class="px-4 py-20 bg-white">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 text-center text-[#0f1f2f]">Latest Insights</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <h3 class="text-xl font-semibold mb-3 text-[#0f1f2f]">Getting Started with Event Modeling</h3>
-            <p class="text-gray-700 mb-4">Learn the basics of Event Modeling and how to apply it to your first project.</p>
-            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
-          </div>
-          <div class="bg-gray-50 p-6 rounded-lg">
-            <h3 class="text-xl font-semibold mb-3 text-[#0f1f2f]">Event Sourcing vs Event Modeling</h3>
-            <p class="text-gray-700 mb-4">Understanding the differences and when to use each approach.</p>
-            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
-          </div>
-        </div>
-        <div class="text-center mt-8">
-          <a href="/blog" class="inline-block border-2 border-[#1f1f1f] text-[#1f1f1f] px-6 py-3 rounded-md font-semibold bg-white hover:bg-gray-100 transition-colors duration-200">
-            View All Articles
-          </a>
-        </div>
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6 text-[#0f1f2f]">Latest Insights</h2>
+        <p class="text-xl text-gray-700 mb-8">
+          Explore our blog for practical tips, case studies, and deep dives into Event Modeling concepts.
+        </p>
+        <a href="/blog" class="inline-block border-2 border-[#1f1f1f] text-[#1f1f1f] px-6 py-3 rounded-md font-semibold bg-white hover:bg-gray-100 transition-colors duration-200">
+          View All Articles
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="px-4 py-20 bg-gray-50">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6 text-[#0f1f2f]">About Event Modeling Zurich</h2>
+        <p class="text-xl text-gray-700 mb-8">
+          We're a community of software professionals passionate about making complex systems understandable 
+          through Event Modeling. Our mission is to share knowledge, build connections, and advance the practice 
+          of visual software design in the Zurich area.
+        </p>
+        <p class="text-lg text-gray-600">
+          Whether you're a developer, architect, product manager, or just curious about Event Modeling, 
+          you're welcome to join our community and learn with us.
+        </p>
       </div>
     </section>
 
@@ -336,97 +215,5 @@ import "../styles/global.css";
 
   <!-- Additional spacing for better scroll detection -->
   <div class="h-96 bg-transparent"></div>
-
-  <!-- JavaScript for mobile menu and hash-based navigation -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const mobileMenuButton = document.querySelector('button[class*="md:hidden"]');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            mobileMenu.classList.add('hidden');
-          });
-        });
-      }
-
-      // Aktive Navigation basierend auf Scroll-Position
-      function updateActiveNavigation() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        const homeNavLink = document.querySelector('nav .desktop-nav a[href="/"]');
-        const scrollY = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        
-        console.log(`ScrollY: ${scrollY}, Window Height: ${windowHeight}`);
-        console.log(`Found ${sections.length} sections with IDs`);
-        
-        let currentSection = '';
-        
-        sections.forEach(section => {
-          const sectionTop = (section as HTMLElement).offsetTop;
-          const sectionHeight = (section as HTMLElement).clientHeight;
-          const sectionId = section.getAttribute('id');
-          
-          // Mehrere Kriterien für "sichtbar"
-          const isInViewport = scrollY + 200 >= sectionTop && scrollY + 200 < sectionTop + sectionHeight;
-          const isNearTop = scrollY >= sectionTop - 200 && scrollY < sectionTop + 200;
-          
-          console.log(`Section ${sectionId}: top=${sectionTop}, height=${sectionHeight}, scrollY=${scrollY}, inViewport=${isInViewport}, nearTop=${isNearTop}`);
-          
-          if (isInViewport || isNearTop) {
-            if (sectionId) {
-              currentSection = sectionId;
-              console.log(`Current section set to: ${currentSection}`);
-            }
-          }
-        });
-        
-        // Alle Hash-Links zurücksetzen
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-        });
-        
-        // Home-Navigation-Link zurücksetzen (immer inaktiv wenn Hash-Links aktiv sind)
-        if (homeNavLink) {
-          homeNavLink.classList.remove('active');
-          // Ursprüngliche CSS-Klassen wiederherstellen
-          homeNavLink.classList.remove('text-white', 'bg-blue-600');
-          homeNavLink.classList.add('text-gray-600');
-        }
-        
-        // Aktiven Hash-Link markieren
-        if (currentSection) {
-          const activeLink = document.querySelector(`nav a[href="#${currentSection}"]`);
-          if (activeLink) {
-            activeLink.classList.add('active');
-            console.log(`Activated link: #${currentSection}`);
-          }
-        } else {
-          // Wenn keine Hash-Sektion aktiv ist, Home-Navigation-Link aktiv machen
-          if (homeNavLink) {
-            homeNavLink.classList.add('active');
-            // Aktive CSS-Klassen für Home setzen
-            homeNavLink.classList.remove('text-gray-600');
-            homeNavLink.classList.add('text-white', 'bg-blue-600');
-            console.log('Activated Home navigation link');
-          }
-        }
-      }
-
-      // Navigation beim Scrollen aktualisieren
-      window.addEventListener('scroll', updateActiveNavigation);
-      
-      // Initial Navigation setzen
-      updateActiveNavigation();
-    });
-  </script>
 </body>
 </html>
