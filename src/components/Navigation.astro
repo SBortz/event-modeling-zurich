@@ -37,7 +37,7 @@ const { currentPage } = Astro.props;
       <!-- Logo/Brand -->
       <a href="/" class="logo-link flex items-center space-x-2">
         <span class="text-2xl">🗓️</span>
-        <span class="font-bold text-xl text-[#0f1f2f]">Event Modeling Zurich</span>
+        <span class="font-bold text-xl text-[#0f1f2f]">Eventmodelers.ch</span>
       </a>
       
       <!-- Desktop Navigation -->
@@ -58,13 +58,13 @@ const { currentPage } = Astro.props;
           currentPage === 'meetup' 
             ? 'text-white font-medium bg-blue-600' 
             : 'text-gray-600 hover:text-blue-600'
-        }`}>Meetup</a>
+        }`}>Zurich Meetup</a>
       </div>
       
       <!-- CTA Button -->
       <div class="hidden md:block">
         <a href="/meetup" class="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
-          Join Meetup
+          Join Zurich Meetup
         </a>
       </div>
       
@@ -91,15 +91,15 @@ const { currentPage } = Astro.props;
               ? 'text-white font-medium bg-blue-600' 
               : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
           }`}>Blog</a>
-          <a href="/meetup" class={`block px-3 py-2 rounded-md ${
-            currentPage === 'meetup' 
-              ? 'text-white font-medium bg-blue-600' 
-              : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
-          }`}>Meetup</a>
+                  <a href="/meetup" class={`block px-3 py-2 rounded-md ${
+          currentPage === 'meetup' 
+            ? 'text-white font-medium bg-blue-600' 
+            : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+        }`}>Zurich Meetup</a>
         <div class="pt-4">
-          <a href="/meetup" class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
-            Join Meetup
-          </a>
+                      <a href="/meetup" class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200">
+              Join Zurich Meetup
+            </a>
         </div>
       </div>
     </div>
