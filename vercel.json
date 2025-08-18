@@ -3,13 +3,7 @@
     {
       "source": "/",
       "destination": "/index-minimal",
-      "permanent": false,
-      "has": [
-        {
-          "type": "host",
-          "value": "eventmodelers.ch"
-        }
-      ]
+      "permanent": false
     }
   ]
 } 
